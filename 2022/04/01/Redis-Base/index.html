@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="ch" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Redis基础 | 春风不解风情，吹动少年的心。</title><meta name="keywords" content="redis"><meta name="author" content="Miky"><meta name="copyright" content="Miky"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="redis配置建议生产配置环境的建议1，将linux内存过度使用设置为1.vm.overcommit_memory &#x3D; 1 &#x2F;etc&#x2F;sysctl.conf sysctl vm.overcommit_memory&#x3D;12，确保linux并不会受到Linux内核功能的影响，比如透明大页面(Transparent Huge Pages),通过下列命令完成echo madvise &gt; &#x2F;sys&#x2F;ke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis基础">
+<meta property="og:url" content="http://example.com/2022/04/01/Redis-Base/index.html">
+<meta property="og:site_name" content="春风不解风情，吹动少年的心。">
+<meta property="og:description" content="redis配置建议生产配置环境的建议1，将linux内存过度使用设置为1.vm.overcommit_memory &#x3D; 1 &#x2F;etc&#x2F;sysctl.conf sysctl vm.overcommit_memory&#x3D;12，确保linux并不会受到Linux内核功能的影响，比如透明大页面(Transparent Huge Pages),通过下列命令完成echo madvise &gt; &#x2F;sys&#x2F;ke">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/backgraound.jpg">
+<meta property="article:published_time" content="2022-04-01T00:59:13.000Z">
+<meta property="article:modified_time" content="2022-04-01T12:47:49.375Z">
+<meta property="article:author" content="Miky">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/backgraound.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/04/01/Redis-Base/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Redis基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-01 20:47:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="春风不解风情，吹动少年的心。" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/backgraound.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">春风不解风情，吹动少年的心。</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Redis基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-04-01T00:59:13.000Z" title="Created 2022-04-01 08:59:13">2022-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-04-01T12:47:49.375Z" title="Updated 2022-04-01 20:47:49">2022-04-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Redis基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a><strong>redis</strong></h2><h3 id="配置建议"><a href="#配置建议" class="headerlink" title="配置建议"></a>配置建议</h3><h4 id="生产配置环境的建议"><a href="#生产配置环境的建议" class="headerlink" title="生产配置环境的建议"></a>生产配置环境的建议</h4><p>1，将linux内存过度使用设置为1.<br><code>vm.overcommit_memory = 1 /etc/sysctl.conf sysctl vm.overcommit_memory=1</code><br>2，确保linux并不会受到Linux内核功能的影响，比如透明大页面(<strong>Transparent Huge Pages</strong>),通过下列命令完成<br><code>echo madvise &gt; /sys/kernel/mm/transparent_hugepage/enabled</code><br>3，设置交换内存，一般建议交换内存和内存大小一致。但是会影响Redis效率。<br>4，‎在您的实例中设置显式选项限制，以确保它将报告错误，而不是在接近达到系统内存限制时失败‎，注意要计算Redis本身的开销和碎片开销，如果有10G可用内存，那么要设置为8或者9。如果是在wirting-heaving的程序中使用redis，要保存RDB或者AOF日志文件，Redis可能使用高达正常内存使用两倍内存（将内存写入磁盘？不是很懂redis的写入机制），使用的额外内存与保存过程中写入操作修改的内存页数成正比，因此使用的额外内存通常与这个期间命中的keys的数量(或者聚合items，或者说set集合？)相应的调整内存大小。<br>5，使用<code>daemonize no</code> 当守护程序工具开启的时候。<br>6，设置一些重要的replication backlog（复制挤压缓冲），一般和内存是成比例的，比如replication backlog默认大小是1M，但是对于20G的内存大小而言，那么1M的replication backlog是毫无意义的，其实主要是涉及到主从复制。<br>主从复制两个关键参数<br>client-output-buffer-limit slave 设置 replication buffer的大小</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client-output-buffer-limit <span class="tag">&lt;<span class="name">class</span>&gt;</span> <span class="tag">&lt;<span class="name">hard</span> <span class="attr">limit</span>&gt;</span> <span class="tag">&lt;<span class="name">soft</span> <span class="attr">limit</span>&gt;</span> <span class="tag">&lt;<span class="name">soft</span> <span class="attr">seconds</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参数含义</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class: 客户端种类，包括Normal，Slaves和Pub/Sub</span><br><span class="line">	Normal: 普通的客户端。默认limit 是0，也就是不限制。</span><br><span class="line">	Pub/Sub: 发布与订阅的客户端的。默认hard limit 32M，soft limit 8M/60s。</span><br><span class="line">	Slaves: 从库的复制客户端。默认hard limit 256M，soft limit 64M/60s。</span><br><span class="line">hard limit: 缓冲区大小的硬性限制。</span><br><span class="line">soft limit: 缓冲去大小的软性限制。</span><br><span class="line">soft seconds: 缓冲区大小达到了（超过）soft limit值的持续时间。</span><br></pre></td></tr></table></figure>
+
+<p>repl-backlog-size 复制挤压缓冲的大小<br>其大小可以根据<strong>每秒产生的命令 乘以（（master执行rdb bgsave的时间）+ (master发送rdb到slave的时间) + (slave load rdb文件的时间) )</strong> ，来估算积压缓冲区的大小，repl-backlog-size值不小于这两者的乘积。<br>7，如果使用的replication(复制)，即使禁用了RDB，但是仍然会需要RDB save（不适用于无盘复制的情况），如果master上面没有磁盘使用，确保开启了无盘复制。<br>8，如果使用replication(复制)，确保mater启用了持久性，或者不会在崩溃之后重新启动，副本将会尝试维护master的一个精确拷贝，如果master在empty data set的情况下启动，副本也会被擦除。<br>9，注意设置密码和可访问Ip。</p>
+<h4 id="EC2注意事项"><a href="#EC2注意事项" class="headerlink" title="EC2注意事项"></a>EC2注意事项</h4><h4 id="不停机的情况下升级或者重启Redis实例"><a href="#不停机的情况下升级或者重启Redis实例" class="headerlink" title="不停机的情况下升级或者重启Redis实例"></a>不停机的情况下升级或者重启Redis实例</h4><p>可以使用CONFIG SET修改很多的配置选项而无需重新启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">获取支持的命令列表。</span><br><span class="line">Config SETCONFIG GET *</span><br><span class="line">更改参数,Redis会加载所有的参数设置并在下一个命令生效。</span><br><span class="line">CONFIG SET</span><br></pre></td></tr></table></figure>
+
+<p>所有支持的参数都和redis.conf文件中使用的等效配置参数有相同的含义。<br>例如从RDB 快照模式切换到 append-only 文件模式，<br>如果你想甚至可以同时启用RDB和AOF，不互斥。<br><strong>必须重新启动的情况</strong><br>升级Redis或者修改Config 命令不支持的某些参数。你可以通过下面的方式减少停机时间<br>1，将新的 Redis 实例设置为当前 Redis 实例的副本。为此，您需要一个不同的服务器，或者一个具有足够 RAM 的服务器，以保持两个 Redis 实例同时运行<br>2，如果是单服务器，确保确保副本和主实列在不同的端口。<br>3，等待复制同步完成。<br>4，确保主节点和从节点有相同的keys数目。<br>5，使用<strong>CONFIG SET slave-read-only no</strong>允许副本可以写入文件。<br>6，将所有客户端配置为使用新实例。（可以使用CLIENT PAUSE确保没有客户端可以写入旧服务器）<br>7，确保主服务器不再接受任何查询，使用<strong>REPLICAOF NO ONE‎</strong>‎ 命令选择要成为主节点的副本，然后关闭主服务器</p>
+<p>如果是使用的‎是 ‎Redis Sentinel‎ 或 ‎Redis Cluster‎‎，则升级到较新版本的最简单方法是逐个副本升级。然后，可以执行手动故障转移，将其中一个已升级的副本提升为主副本，最后升级最后一个副本。‎<br>4.0集群和3.2集群不兼容，5.0总是向后兼容4.0</p>
+<h3 id="客户端缓存"><a href="#客户端缓存" class="headerlink" title="客户端缓存"></a>客户端缓存</h3><p>两种实现<br>1，默认模式。<br>2，广播模式。</p>
+<h4 id="默认模式"><a href="#默认模式" class="headerlink" title="默认模式"></a>默认模式</h4><p>‎如果需要，客户端可以启用跟踪。‎‎连接在未启用跟踪的情况下启动‎.<br>启用跟踪后，服务器会记住每个客户端在连接生存期内请求的密钥（通过发送有关此类密钥的读取命令）。<br>‎当某个密钥被某个客户端修改，或者因为具有关联的过期时间而被逐出，或者由于 ‎<em>‎maxmemory‎</em>‎ 策略而被逐出时，所有启用了跟踪且可能缓存了该密钥的客户端都会收到‎<em>‎无效消息‎</em>‎的通知。‎<br>当客户端收到失效消息时，它们需要删除相应的密钥，以避免提供过时的数据。‎</p>
+<p>但是为了减少内存量和CPU使用</p>
+<p>服务器会记住可能已将给定键缓存在单个全局表中的客户机列表。此表称为‎‎失效表‎‎。无效表可以包含最大数量的条目。如果插入了新密钥，服务器可能会通过假装修改了较旧的项（即使未修改）并向客户端发送无效消息来逐出该条目。这样做，它可以回收用于此密钥的内存，即使这将强制具有密钥本地副本的客户端逐出它。‎<br>‎在失效表中，我们实际上并不需要存储指向客户端结构的指针，当客户端断开连接时，这将强制执行垃圾回收过程：相反，我们所做的只是存储客户端ID（每个Redis客户端都有一个唯一的数字ID）。如果客户端断开连接，则当缓存槽失效时，信息将被增量垃圾回收。‎<br>‎有一个单一的 keys 命名空间，不按数据库编号划分。因此，如果客户端正在缓存数据库 2 中的密钥，并且某个其他客户端更改了数据库 3 中密钥的值，则仍将发送无效消息。这样，我们可以忽略数据库编号，从而降低内存使用量和实现复杂性。‎</p>
+<h4 id="广播模式"><a href="#广播模式" class="headerlink" title="广播模式"></a>广播模式</h4><h4 id="双链接模式"><a href="#双链接模式" class="headerlink" title="双链接模式"></a>双链接模式</h4><h3 id="Redis配置"><a href="#Redis配置" class="headerlink" title="Redis配置"></a>Redis配置</h3><p><a target="_blank" rel="noopener" href="https://redis.io/docs/manual/config/">https://redis.io/docs/manual/config/</a></p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="STRINGS"><a href="#STRINGS" class="headerlink" title="STRINGS"></a>STRINGS</h4><p>最大长度可以达到512M</p>
+<ul>
+<li>使用 INCR 系列中的命令将字符串用作原子计数器：‎<a target="_blank" rel="noopener" href="https://redis.io/commands/incr">‎INCR‎</a>‎、‎<a target="_blank" rel="noopener" href="https://redis.io/commands/decr">‎DECR‎</a>‎、‎<a target="_blank" rel="noopener" href="https://redis.io/commands/incrby">‎INCRBY‎</a>‎。‎</li>
+<li>‎使用 APPEND 命令‎<a target="_blank" rel="noopener" href="https://redis.io/commands/append">‎追‎</a>‎加到字符串。‎</li>
+<li>‎使用字符串作为 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/getrange">‎GETRANGE‎</a>‎ 和 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/setrange">‎SETRANGE‎</a>‎ 的随机访问向量。‎</li>
+<li>‎在很小的空间中对大量数据进行编码，或者使用 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/getbit">‎GETBIT‎</a>‎ 和 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/setbit">‎SETBIT‎</a>‎ 创建 Redis 支持的布卢姆过滤器。</li>
+</ul>
+<h4 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h4><p>Redis 列表只是按插入顺序排序的字符串列表。可以将元素添加到 Redis 列表中，将新元素推送到列表的头部（左侧）或尾部（右侧）<br><a target="_blank" rel="noopener" href="https://redis.io/commands/lpush">‎LPUSH‎</a>‎ 命令在头部插入一个新元素，而 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/rpush">‎RPUSH‎</a>‎ 在尾部插入一个新元素。当对空键执行其中一项操作时，将创建一个新列表。同样，如果列表操作将清空列表，则会从键空间中删除该键。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LPUSH mylist a   # now the list is &quot;a&quot;</span><br><span class="line">LPUSH mylist b   # now the list is &quot;b&quot;,&quot;a&quot;</span><br><span class="line">RPUSH mylist c   # now the list is &quot;b&quot;,&quot;a&quot;,&quot;c&quot; (RPUSH was used this time)</span><br></pre></td></tr></table></figure>
+
+<p>‎列表的最大长度为 2^32 - 1 个元素（4294967295，每个列表超过 40 亿个元素）。‎<br>因为是在头或者尾部插入，所以消耗时间是O(N)的。</p>
+<ul>
+<li>‎在社交网络中对时间线进行建模，使用‎<a target="_blank" rel="noopener" href="https://redis.io/commands/lpush">‎LPUSH‎</a>‎在用户时间线中添加新元素，并使用‎<a target="_blank" rel="noopener" href="https://redis.io/commands/lrange">‎LRANGE‎</a>‎检索一些最近插入的项目。‎</li>
+<li>‎您可以将 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/lpush">‎LPUSH‎</a>‎ 与 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/ltrim">‎LTRIM‎</a>‎ 一起使用，以创建一个列表，该列表永远不会超过给定数量的元素，而只会记住最新的 N 个元素。‎</li>
+<li>‎列表可以用作消息传递基元，例如，请参阅用于创建后台作业的众所周知‎<a target="_blank" rel="noopener" href="https://github.com/resque/resque">‎的Resque‎</a>‎ Ruby库。‎</li>
+<li>‎您可以使用列表执行更多操作，此数据类型支持许多命令，包括 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/blpop">‎BLPOP‎</a>‎ 等阻止命令</li>
+</ul>
+<h4 id="Sets"><a href="#Sets" class="headerlink" title="Sets"></a>Sets</h4><p>‎Redis 集是字符串的无序集合。可以添加、删除和测试 中成员是否存在在 O（1）的时间复杂度内（恒定时间，而不管集合中包含的元素数量如何）‎<br>‎一个集合中的最大成员数为 2^32 - 1（4294967295，每组超过 40 亿个成员）。‎</p>
+<ul>
+<li>您可以使用 Redis Set 跟踪独特的事物。想知道访问给定博客文章的所有唯一IP地址吗？只需在每次处理页面视图时使用 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/sadd">‎SADD‎</a>‎ 即可。您确定不会插入重复的 IP。‎</li>
+<li>‎Redis 集可以很好地表示关系。您可以使用 Redis 创建标记系统，使用 Set 来表示每个标记。然后，您可以使用 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/sadd">‎SADD‎</a>‎ 命令将具有给定标记的所有对象的所有 ID 添加到表示此特定标记的 Set 中。是否希望所有对象的所有 ID 同时具有三个不同的标记？只需使用‎<a target="_blank" rel="noopener" href="https://redis.io/commands/sinter">‎SINTER</a>‎。‎</li>
+<li>‎可以使用 Set 使用 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/spop">‎SPOP‎</a>‎ 或 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/srandmember">‎SRANDMEMBER‎</a>‎ 命令随机提取元素。</li>
+</ul>
+<h4 id="Hashes"><a href="#Hashes" class="headerlink" title="Hashes"></a>Hashes</h4><p>‎Redis 哈希是字符串字段和字符串值之间的映射，因此它们是表示对象（例如，具有许多字段（如姓名、姓氏、年龄等字段的用户）是完美的数据类型</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; HMSET myhash field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">OK</span><br><span class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; HGET myhash field1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; HGET myhash field2</span><br><span class="line">&quot;World&quot;</span><br></pre></td></tr></table></figure>
+
+<p>具有几个字段的哈希值（其中很少表示最多一百个左右）以占用很少空间的方式存储，因此您可以在小型 Redis 实例中存储数百万个对象。‎<br>虽然哈希值主要用于表示对象，但它们能够存储许多元素，因此您也可以将哈希值用于许多其他任务。‎<br>‎每个哈希值最多可以存储 2^32 - 1 个字段值对（超过 40 亿个）</p>
+<h4 id="Sorted-Sets"><a href="#Sorted-Sets" class="headerlink" title="Sorted Sets"></a>Sorted Sets</h4><p>Redis 排序集与 Redis 集类似，是字符串的非重复集合。不同之处在于，排序集的每个成员都与一个分数相关联，该分数用于使排序集保持顺序，从最小到最大分数。虽然成员是唯一的，但分数可能会重复。‎</p>
+<p>‎使用排序集，您可以以非常快的方式添加、移除或更新元素（在与元素数对数成比例的时间内）。由于元素是‎<em>‎按顺序存储的‎</em>‎，而不是在之后排序的，因此您还可以以非常快的方式按分数或按等级（位置）获取范围。访问排序集的中间也非常快，因此您可以将排序集用作非重复元素的智能列表，您可以在其中快速访问所需的所有内容：按顺序排列的元素，快速存在测试，快速访问中间的元素！‎</p>
+<ul>
+<li>‎在大型在线游戏中建立一个排行榜，每次提交新分数时，您都可以使用‎<a target="_blank" rel="noopener" href="https://redis.io/commands/zadd">‎ZADD进行‎</a>‎更新。您可以使用‎<a target="_blank" rel="noopener" href="https://redis.io/commands/zrange">‎ZRANGE‎</a>‎轻松检索排名靠前的用户，也可以在给定用户名的情况下，使用‎<a target="_blank" rel="noopener" href="https://redis.io/commands/zrank">‎ZRANK‎</a>‎返回其在列表中的排名。同时使用 ZRANK 和 ZRANGE，您可以向用户显示与给定用户相似的分数。一切都‎<em>‎很快‎</em>‎。‎</li>
+<li>‎排序集通常用于索引存储在 Redis 中的数据。例如，如果您有许多表示用户的哈希值，则可以使用排序集，其成员以用户的年龄为分数，以用户的 ID 为值。因此‎<a target="_blank" rel="noopener" href="https://redis.io/commands/zrangebyscore">‎，使用ZRANGEBYSCORE‎</a>‎，检索具有给定年龄范围的所有用户将是微不足道的，并且非常快速。‎</li>
+</ul>
+<h4 id="位图和超日志日志"><a href="#位图和超日志日志" class="headerlink" title="位图和超日志日志"></a>位图和超日志日志</h4><p>‎Redis 还支持位图和 HyperLogLogs，它们实际上是基于 String 基类型的数据类型，但具有自己的语义。‎</p>
+<h4 id="STREAM"><a href="#STREAM" class="headerlink" title="STREAM"></a>STREAM</h4><p>Redis 流是一种数据结构，其作用类似于仅追加日志。流对于按事件发生的顺序记录事件非常有用。</p>
+<h4 id="Geospatial-indexes（地理空间索引）"><a href="#Geospatial-indexes（地理空间索引）" class="headerlink" title="Geospatial indexes（地理空间索引）"></a>Geospatial indexes（地理空间索引）</h4><p>‎Redis 提供地理空间索引，这些索引对于查找给定地理半径内的位置非常有用。您可以使用 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/geoadd">‎GEOADD‎</a>‎ 命令将位置添加到地理空间索引。然后，使用 ‎<a target="_blank" rel="noopener" href="https://redis.io/commands/georadius">‎GEORADIUS‎</a>‎ 命令搜索给定半径内的位置。‎</p>
+<h3 id="过期策略"><a href="#过期策略" class="headerlink" title="过期策略"></a>过期策略</h3><h5 id="内存限制"><a href="#内存限制" class="headerlink" title="内存限制"></a>内存限制</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">可以使用CONFIG SET</span><br><span class="line">或者在Redis.conf中标注</span><br><span class="line">maxmemory 100mb</span><br></pre></td></tr></table></figure>
+
+<h5 id="过期策略LRU，LFU"><a href="#过期策略LRU，LFU" class="headerlink" title="过期策略LRU，LFU"></a>过期策略LRU，LFU</h5><ul>
+<li><strong>noeviction</strong>：达到内存限制时，不会保存新值。当数据库使用复制时，这适用于主数据库</li>
+<li><strong>allkeys-lru</strong>：保留最近使用的密钥;删除最近最少使用的 （LRU） 密钥</li>
+<li><strong>allkeys-lfu</strong>：保留常用的密钥;删除最不常用 （LFU） 密钥</li>
+<li><strong>volatile-lru</strong>：删除最近最少使用的键，（字段有过期时间）</li>
+<li><strong>volatile-lfu</strong>：删除最不常用的键，（字段有过期时间）</li>
+<li><strong>allkeys-random</strong>：随机删除键，为添加的新数据腾出空间。</li>
+<li><strong>volatile-random</strong>：随机删除键，（字段有过期时间）</li>
+<li><strong>volatile-ttl</strong>：删除字段设置为最短剩余生存时间 （TTL） 值时最不常用的键。<code>（字段有过期时间）</code></li>
+</ul>
+<p>如果没有与先决条件匹配的逐出密钥，则策略 ‎<strong>‎volatile-lru‎</strong>‎、‎<strong>‎volatile-lfu‎</strong>‎、‎<strong>‎volatile-random‎</strong>‎ 和 ‎<strong>‎volatile-ttl‎</strong>‎ 的行为类似于 ‎<strong>‎noevition‎</strong>‎</p>
+<h5 id="逐出方式"><a href="#逐出方式" class="headerlink" title="逐出方式"></a>逐出方式</h5><ul>
+<li>‎客户端运行新命令，从而添加更多数据。‎</li>
+<li>‎Redis 会检查内存使用情况，如果内存使用率大于限制，则会根据策略逐出密钥。‎<code>maxmemory</code></li>
+<li>‎将执行新命令，依此类推</li>
+</ul>
+<p>‎因此，我们不断跨越内存限制的边界，通过超越它，然后通过逐出密钥返回到限制之下。‎<br>‎如果某个命令导致大量内存被使用（例如存储到新键中的大集合交集），则内存限制可能会超过相当大的数量‎。</p>
+<h5 id="近似LRU算法（Least-Recently-Used）最近最少使用"><a href="#近似LRU算法（Least-Recently-Used）最近最少使用" class="headerlink" title="近似LRU算法（Least Recently Used）最近最少使用"></a>近似LRU算法（Least Recently Used）最近最少使用</h5><p>精度控制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-samples 5</span><br></pre></td></tr></table></figure>
+
+<h5 id="新LFU模式-Least-Frequently-Used-一段时间内最不经常使用"><a href="#新LFU模式-Least-Frequently-Used-一段时间内最不经常使用" class="headerlink" title="新LFU模式(Least Frequently Used)一段时间内最不经常使用"></a>新LFU模式(Least Frequently Used)一段时间内最不经常使用</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">volatile-lfu 在具有过期集的密钥中使用近似的 LFU 逐出。</span><br><span class="line">allkeys-lfu 使用近似的 LFU 逐出任何密钥。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lfu-log-factor可以调整计数器counter的增长速度，lfu-log-factor越大，counter增长的越慢。</span><br><span class="line">lfu-log-factor 10</span><br><span class="line">counter 的减少速度由参数 lfu-decay-time 进行控制，默认是 1，单位是分钟。默认值 1 表示：N 分钟内没有访问，counter 就要减 N。</span><br><span class="line">lfu-decay-time 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis-Sentinel-哨兵模式"><a href="#Redis-Sentinel-哨兵模式" class="headerlink" title="Redis Sentinel(哨兵模式)"></a>Redis Sentinel(哨兵模式)</h3><p>作用</p>
+<ul>
+<li><strong>监控‎</strong>‎。Sentinel 会不断检查您的主实例和副本实例是否按预期工作。‎</li>
+<li><strong>‎通知‎</strong>‎。Sentinel 可以通过 API 通知系统管理员或其他计算机程序，其中一个受监视的 Redis 实例出现问题。‎</li>
+<li><strong>‎自动故障转移‎</strong>‎。如果主服务器未按预期工作，Sentinel 可以启动故障转移过程，将副本提升为主副本，将其他副本重新配置为使用新的主副本，并通知使用 Redis 服务器的应用程序在连接时要使用的新地址。‎</li>
+<li><strong>‎配置提供程序‎</strong>‎。Sentinel 充当客户端服务发现的权限源：客户端连接到 Sentinels，以便询问负责给定服务的当前 Redis 主节点的地址。如果发生故障转移，哨兵将报告新地址</li>
+</ul>
+<h3 id="密钥通知"><a href="#密钥通知" class="headerlink" title="密钥通知"></a>密钥通知</h3><h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><ul>
+<li><strong>RDB</strong>（Redis 数据库）：RDB 持久性按指定的时间间隔执行数据集的时间点快照。</li>
+<li><strong>AOF</strong>（仅追加文件）：AOF 持久性记录服务器接收的每个写入操作，这些操作将在服务器启动时再次播放，从而重建原始数据集。使用与 Redis 协议本身相同的格式以仅追加的方式记录命令。Redis 能够在日志变得太大时在后台<a target="_blank" rel="noopener" href="https://redis.io/docs/manual/persistence/#log-rewriting">重写</a>日志。</li>
+<li><strong>无持久性</strong>：如果您愿意，可以完全禁用持久性，前提是您希望数据在服务器运行期间一直存在。</li>
+<li><strong>RDB + AOF</strong>：可以在同一实例中同时组合 AOF 和 RDB。请注意，在这种情况下，当 Redis 重新启动时，AOF 文件将用于重建原始数据集，因为它保证是最完整的。</li>
+</ul>
+<h4 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h4><h5 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h5><ul>
+<li>RDB 是 Redis 数据的非常紧凑的单文件时间点表示形式。RDB文件非常适合备份。例如，您可能希望在最近 24 小时内每小时存档一次 RDB 文件，并希望每天保存一个 RDB 快照，持续 30 天。这使您可以在发生灾难时轻松还原数据集的不同版本。</li>
+<li>RDB非常适合灾难恢复，它是一个紧凑的文件，可以传输到远数据中心或Amazon S3（可能加密）。</li>
+<li>RDB最大限度地提高了Redis的性能，因为Redis父进程为了持久化而需要做的唯一工作就是分叉一个子进程，它将完成其余的所有事情。父进程永远不会执行磁盘 I&#x2F;O 或类似操作。</li>
+<li>与AOF相比，RDB允许使用大型数据集更快地重新启动。</li>
+<li>在副本上，RDB 支持<a target="_blank" rel="noopener" href="https://redis.io/topics/replication#partial-resynchronizations-after-restarts-and-failovers">在重新启动和故障转移后进行部分重新同步</a>。</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>如果您需要在 Redis 停止工作（例如在断电后）将数据丢失的可能性降至最低，则 RDB 并不好。您可以在生成 RDB 的位置配置不同的<em>保存点</em>（例如，在对数据集进行至少 5 分钟和 100 次写入后，您可以有多个保存点）。但是，您通常每五分钟或更长时间创建一个RDB快照，因此，如果Redis因任何原因在没有正确关闭的情况下停止工作，您应该准备好丢失最新分钟的数据。</li>
+<li>RDB 需要经常分叉（），以便使用子进程在磁盘上持久保存。如果数据集很大，则 fork（） 可能会非常耗时，并且如果数据集非常大且 CPU 性能不是很高，则可能导致 Redis 停止为客户端提供服务数毫秒甚至一秒钟。AOF 还需要分叉（），但频率较低，您可以调整重写日志的频率，而无需在持久性上进行任何权衡。</li>
+</ul>
+<h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><h5 id="优势-1"><a href="#优势-1" class="headerlink" title="优势"></a>优势</h5><ul>
+<li>使用 AOF Redis 更加持久：您可以拥有不同的 fsync 策略：根本没有 fsync，每秒 fsync 一次，每次查询时 fsync。使用默认的 fsync 每秒策略，写入性能仍然很高。fsync 是使用后台线程执行的，当没有 fsync 正在进行时，主线程将努力执行写入，因此您只能丢失一秒钟的写入。</li>
+<li>AOF 日志是仅追加日志，因此在断电时不会出现寻道和损坏问题。即使由于某种原因（磁盘已满或其他原因），日志也以半写的命令结尾，redis-check-aof工具也可以轻松修复它。</li>
+<li>Redis 能够在 AOF 变得太大时自动在后台重写它。重写是完全安全的，因为当Redis继续追加到旧文件时，将使用创建当前数据集所需的最少操作集生成一个全新的文件，并且一旦第二个文件准备就绪，Redis就会切换两个文件并开始追加到新文件。</li>
+<li>AOF 以易于理解和解析的格式一个接一个地包含所有操作的日志。您甚至可以轻松导出AOF文件。例如，即使您不小心使用 <a target="_blank" rel="noopener" href="https://redis.io/commands/flushall"><code>FLUSHALL</code></a> 命令刷新了所有内容，只要在此期间未执行日志重写，您仍然可以通过停止服务器、删除最新命令并再次重新启动 Redis 来保存数据集</li>
+</ul>
+<h5 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>AOF 文件通常大于同一数据集的等效 RDB 文件。</li>
+<li>AOF 可能比 RDB 慢，具体取决于确切的 fsync 策略。一般来说，将 fsync 设置为<em>每秒一次</em>的性能仍然非常高，并且在禁用 fsync 的情况下，即使在高负载下，它也应该与 RDB 一样快。尽管如此，RDB仍然能够提供更多关于最大延迟的保证，即使在巨大的写入负载的情况下也是如此。</li>
+</ul>
+<p><strong>Redis &lt; 7.0</strong></p>
+<ul>
+<li>如果在重写期间对数据库有写入操作，AOF 可能会使用大量内存（这些写入操作在内存中，并在末尾写入新的 AOF）。</li>
+<li>在重写期间到达的所有写入命令都会写入磁盘两次。</li>
+<li>Redis 可以在重写结束时冻结写入这些写入命令并将其同步到新的 AOF 文件</li>
+</ul>
+<h4 id="RDB-SNAPSHOT"><a href="#RDB-SNAPSHOT" class="headerlink" title="RDB SNAPSHOT"></a>RDB SNAPSHOT</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 60 1000</span><br></pre></td></tr></table></figure>
+
+<p>60秒内改了1000个键键就会触发快照。<br>执行方式每当 Redis 需要将数据集转储到磁盘时，都会发生以下情况：</p>
+<ul>
+<li>Redis <a target="_blank" rel="noopener" href="http://linux.die.net/man/2/fork">forks</a>.我们现在有一个孩子和一个父进程。</li>
+<li>子级开始将数据集写入临时 RDB 文件。</li>
+<li>当子级完成写入新的 RDB 文件时，它将替换旧的 RDB 文件。</li>
+</ul>
+<h4 id="仅追加文件AOF"><a href="#仅追加文件AOF" class="headerlink" title="仅追加文件AOF"></a>仅追加文件AOF</h4><p>快照不是很持久。如果运行 Redis 的计算机停止运行、电源线出现故障或实例意外发生故障，则写入 Redis 的最新数据将丢失。虽然对于某些应用程序来说，这可能不是什么大问题，但存在完全持久性的用例，在这些情况下，仅使用Redis快照并不是一个可行的选择。<code>kill -9</code><br><em>仅追加文件</em>是 Redis 的替代、完全持久的策略。它在1.1版中可用。<br>您可以在配置文件中打开 AOF：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>从现在开始，每次 Redis 收到更改数据集的命令（例如 SET）时<a target="_blank" rel="noopener" href="https://redis.io/commands/set"><code>，</code></a>它都会将其附加到 AOF。当您重新启动 Redis 时，它将重新播放 AOF 以重建状态。</p>
+<p>从 Redis 7.0.0 开始，Redis 使用多部分 AOF 机制。也就是说，原始的单个 AOF 文件被拆分为基本文件（最多一个）和增量文件（可能有多个）。基文件表示<a target="_blank" rel="noopener" href="https://redis.io/docs/manual/persistence/#log-rewriting">重写</a> AOF 时存在的数据的初始（RDB 或 AOF 格式）快照。增量文件包含自上次创建基本 AOF 文件以来的增量更改。所有这些文件都放在单独的目录中，并由清单文件跟踪。</p>
+<h5 id="日志重写"><a href="#日志重写" class="headerlink" title="日志重写"></a>日志重写</h5><p>随着写入操作的执行，AOF 变得越来越大。例如，如果将计数器递增 100 倍，则最终将在数据集中得到一个包含最终值的键，但在 AOF 中包含 100 个条目。不需要其中 99 个条目来重建当前状态。</p>
+<p>重写是完全安全的。当 Redis 继续追加到旧文件时，将生成一个全新的文件，其中包含创建当前数据集所需的最少操作集，一旦第二个文件准备就绪，Redis 就会切换两个文件并开始追加到新文件。</p>
+<p>因此，Redis支持一个有趣的功能：它能够在后台重建AOF，而不会中断对客户端的服务。每当您发出 <a target="_blank" rel="noopener" href="https://redis.io/commands/bgrewriteaof"><code>BGREWRITEAOF 时</code></a>，Redis 都会编写在内存中重建当前数据集所需的最短命令序列。如果您将 AOF 与 Redis 2.2 配合使用，则需要不时运行 <a target="_blank" rel="noopener" href="https://redis.io/commands/bgrewriteaof"><code>BGREWRITEAOF</code></a>。由于 Redis 2.4 能够自动触发日志重写（有关详细信息，请参阅示例配置文件）。</p>
+<p>从 Redis 7.0.0 开始，当计划重写 AOF 时，Redis 父进程将打开一个新的增量 AOF 文件以继续写入。子进程执行重写逻辑并生成新的基本 AOF。Redis 将使用临时清单文件来跟踪新生成的基本文件和增量文件。准备就绪后，Redis 将执行原子替换操作，以使此临时清单文件生效。为了避免在 AOF 重写反复失败和重试时创建许多增量文件的问题，Redis 引入了 AOF 重写限制机制，以确保以越来越慢的速度重试失败的 AOF 重写。</p>
+<h5 id="可以配置同步数据的次数"><a href="#可以配置同步数据的次数" class="headerlink" title="可以配置同步数据的次数"></a>可以配置同步数据的次数</h5><ul>
+<li><code>appendfsync always</code>：每次将新命令追加到 AOF 时。非常非常慢，非常安全。请注意，在执行来自多个客户端或管道的一批命令后，这些命令将附加到 AOF，因此这意味着一次写入和一次 fsync（在发送回复之前）。<code>fsync</code></li>
+<li><code>appendfsync everysec</code>：每秒。足够快（因为版本 2.4 可能与快照一样快），如果发生灾难，您可能会丢失 1 秒钟的数据。<code>fsync</code></li>
+<li><code>appendfsync no</code>：从不，只需将您的数据交到操作系统手中即可。更快，更不安全的方法。通常，Linux 使用此配置每 30 秒刷新一次数据，但这取决于内核的确切调整。<code>fsync</code></li>
+</ul>
+<p>建议的（也是默认的）策略是每秒。它既快速又相对安全。该策略在实践中非常慢，但它支持组提交，因此如果有多个并行写入，Redis 将尝试执行单个操作。<code>fsync``always``fsync</code><br>Redis &gt; 7.0</p>
+<ul>
+<li>Redis <a target="_blank" rel="noopener" href="http://linux.die.net/man/2/fork">分叉</a>，所以现在我们有一个子进程和一个父进程。</li>
+<li>子级开始在临时文件中写入新的基础 AOF。</li>
+<li>父级打开一个新的增量 AOF 文件以继续写入更新。如果重写失败，则旧的基文件和增量文件（如果有）加上这个新打开的增量文件表示完整的更新数据集，因此我们是安全的。</li>
+<li>当子级完成重写基文件时，父级将收到一个信号，并使用新打开的增量文件和子级生成的基本文件来生成临时清单，并保留它。</li>
+<li>利润！现在 Redis 执行清单文件的原子交换，以便此 AOF 重写的结果生效。Redis 还会清理旧的基本文件和任何未使用的增量文件。</li>
+</ul>
+<p>Redis &lt; 7.0 </p>
+<ul>
+<li>Redis <a target="_blank" rel="noopener" href="http://linux.die.net/man/2/fork">分叉</a>，所以现在我们有一个子进程和一个父进程。</li>
+<li>子项开始在临时文件中写入新的 AOF。</li>
+<li>父级将所有新更改累积到内存中缓冲区中（但同时它将新更改写入旧的仅追加文件中，因此如果重写失败，我们是安全的）。</li>
+<li>当子级完成重写文件时，父级会收到一个信号，并在子级生成的文件末尾追加内存中缓冲区。</li>
+<li>现在，Redis 以原子方式将旧文件重命名为新文件，并开始将新数据追加到新文件中。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Miky</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/01/Redis-Base/">http://example.com/2022/04/01/Redis-Base/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/redis/">redis</a></div><div class="post_share"><div class="social-share" data-image="/img/backgraound.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/09/03/%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/backgraound.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2022/03/24/MySQL-Index/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/backgraound.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">MySQL优化</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Miky</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn"><i class="iconfont icon-youxishoubing"></i><span>摸鱼</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis"><span class="toc-number">1.</span> <span class="toc-text">redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.1.</span> <span class="toc-text">配置建议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">生产配置环境的建议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EC2%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.1.2.</span> <span class="toc-text">EC2注意事项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%81%9C%E6%9C%BA%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%8D%87%E7%BA%A7%E6%88%96%E8%80%85%E9%87%8D%E5%90%AFRedis%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">不停机的情况下升级或者重启Redis实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BC%93%E5%AD%98"><span class="toc-number">1.2.</span> <span class="toc-text">客户端缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">默认模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%BF%E6%92%AD%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">广播模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E9%93%BE%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">双链接模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">Redis配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#STRINGS"><span class="toc-number">1.4.1.</span> <span class="toc-text">STRINGS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lists"><span class="toc-number">1.4.2.</span> <span class="toc-text">Lists</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sets"><span class="toc-number">1.4.3.</span> <span class="toc-text">Sets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hashes"><span class="toc-number">1.4.4.</span> <span class="toc-text">Hashes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sorted-Sets"><span class="toc-number">1.4.5.</span> <span class="toc-text">Sorted Sets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E5%9B%BE%E5%92%8C%E8%B6%85%E6%97%A5%E5%BF%97%E6%97%A5%E5%BF%97"><span class="toc-number">1.4.6.</span> <span class="toc-text">位图和超日志日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STREAM"><span class="toc-number">1.4.7.</span> <span class="toc-text">STREAM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Geospatial-indexes%EF%BC%88%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E7%B4%A2%E5%BC%95%EF%BC%89"><span class="toc-number">1.4.8.</span> <span class="toc-text">Geospatial indexes（地理空间索引）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5"><span class="toc-number">1.5.</span> <span class="toc-text">过期策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">内存限制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5LRU%EF%BC%8CLFU"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">过期策略LRU，LFU</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%90%E5%87%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">1.5.0.3.</span> <span class="toc-text">逐出方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%91%E4%BC%BCLRU%E7%AE%97%E6%B3%95%EF%BC%88Least-Recently-Used%EF%BC%89%E6%9C%80%E8%BF%91%E6%9C%80%E5%B0%91%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.0.4.</span> <span class="toc-text">近似LRU算法（Least Recently Used）最近最少使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B0LFU%E6%A8%A1%E5%BC%8F-Least-Frequently-Used-%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E5%86%85%E6%9C%80%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.0.5.</span> <span class="toc-text">新LFU模式(Least Frequently Used)一段时间内最不经常使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Sentinel-%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.6.</span> <span class="toc-text">Redis Sentinel(哨兵模式)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E9%80%9A%E7%9F%A5"><span class="toc-number">1.7.</span> <span class="toc-text">密钥通知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.8.</span> <span class="toc-text">持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDB"><span class="toc-number">1.8.1.</span> <span class="toc-text">RDB</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.8.1.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">1.8.1.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AOF"><span class="toc-number">1.8.2.</span> <span class="toc-text">AOF</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF-1"><span class="toc-number">1.8.2.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-number">1.8.2.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDB-SNAPSHOT"><span class="toc-number">1.8.3.</span> <span class="toc-text">RDB SNAPSHOT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%85%E8%BF%BD%E5%8A%A0%E6%96%87%E4%BB%B6AOF"><span class="toc-number">1.8.4.</span> <span class="toc-text">仅追加文件AOF</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E9%87%8D%E5%86%99"><span class="toc-number">1.8.4.1.</span> <span class="toc-text">日志重写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E9%85%8D%E7%BD%AE%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E6%AC%A1%E6%95%B0"><span class="toc-number">1.8.4.2.</span> <span class="toc-text">可以配置同步数据的次数</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/img/backgraound.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Miky</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><canvas id="universe"></canvas><script src="/js/universe.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/hexo-butterfly-clock/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://npm.elemecdn.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>

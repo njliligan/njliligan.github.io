@@ -1,0 +1,43 @@
+/* #recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
+  background: var(--light_bg_color)
+}
+
+#aside-content .card-widget {
+  background: var(--light_bg_color)
+} */
+
+/* #web_bg {
+  background: linear-gradient(
+    102.7deg,
+    #fddaff 8.2%,
+    #dfadfc 19.6%,
+    #adcdfc 36.8%,
+    #adfcf4 73.2%,
+    #caf8d0 90.9%
+  );
+} */
+
+#footer {
+  background: rgba(255,255,255,.15);
+  color: #000;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  backdrop-filter: saturate(100%) blur(5px)
+}
+
+#footer::before {
+  background: rgba(255,255,255,.15)
+}
+
+#footer #footer-wrap {
+  color: var(--font-color)
+}
+
+#footer #footer-wrap a {
+  color: var(--font-color)
+}
+
+#aside-content.aside-content > .sticky_layout > .card-widget.card-clock > .card-glass > .card-background {
+  background-color: unset ;
+  box-shadow: unset ;
+}
