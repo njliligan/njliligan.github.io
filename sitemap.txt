@@ -1,2 +1,4 @@
+http://example.com/2023/07/02/modelscope%E5%85%A5%E9%97%A8/
 http://example.com/2023/07/02/hello-world/
 http://example.com/
+http://example.com/tags/modelscope-%E5%85%A5%E9%97%A8/
