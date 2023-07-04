@@ -2,9 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2023/07/04/%E8%AE%B0%E4%B8%80%E6%AC%A1MySQL%E2%80%98%E6%8C%89%E7%85%A7%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%E6%9B%B4%E6%96%B0%E2%80%99%E5%BC%95%E8%B5%B7%E7%9A%84BUG/</loc>
+    
+    <lastmod>2023-07-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/2023/07/02/modelscope%E5%85%A5%E9%97%A8/</loc>
     
-    <lastmod>2023-07-02</lastmod>
+    <lastmod>2023-07-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,11 +31,39 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2023-07-02</lastmod>
+    <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://example.com/tags/BUG/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/MySQL/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/modelscope/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 
   
