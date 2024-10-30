@@ -115,26 +115,6 @@
       </tags>
   </entry>
   <entry>
-    <title>什达格</title>
-    <url>/2024/09/08/travel/ShenDaGe/</url>
-    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>布瓦寨后山——什达格，最高海拔3900左右，登上山巅，可以看到羌山之王——小雪隆包，九顶山朱峰狮子王峰</p>
-<h2 id="轨迹"><a href="#轨迹" class="headerlink" title="轨迹"></a>轨迹</h2><p><a href="https://www.2bulu.com/track/t-KzSeHBkpXBrp%25252FR2KBg5Tzw%25253D%25253D.htm">https://www.2bulu.com/track/t-KzSeHBkpXBrp%25252FR2KBg5Tzw%25253D%25253D.htm</a><br>难度系数：⭐⭐⭐⭐<br>路程：往返18km，爬升1200左右。最晚下午三点下山</p>
-<h2 id="消费"><a href="#消费" class="headerlink" title="消费"></a>消费</h2><p>1，单边油费(1元&#x2F;km) + 过路费 为 151 + 76<br>2，开心牧场门票 20&#x2F;人</p>
-<h2 id="行摄"><a href="#行摄" class="headerlink" title="行摄"></a>行摄</h2><div class="gallery-container" data-type="data" data-button="">
-      <div class="gallery-data">[{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBTcTh3ekJVdEVWRlVoWHc_ZT14dG1RUzU.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBSanVtX1p5SW1iZ08tX3c_ZT1paENDTFg.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBPWXpybFNXeUxXVDNMNHc_ZT1hY0NSUEE.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBOcWRuNFAtRFhBZm9BWHc_ZT01UXFTMHQ.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBQSjU4UUVZSkxfSzJSQUE_ZT1PazM4Wm8.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBRZng1S0hFcUtiSDUxNGc_ZT1LYm1MaGk.jpg","alt":""}]</div>
-      <div class="gallery-items">
-      </div>
-    </div>]]></content>
-      <categories>
-        <category>旅游</category>
-      </categories>
-      <tags>
-        <tag>旅游</tag>
-        <tag>四川</tag>
-        <tag>什达格</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Xiaomi如何防止FCM断连</title>
     <url>/2024/09/11/xiaomi_develop/FCM_record/</url>
     <content><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>1，因为国外很多软件需要FCM进行消息推送。<br>2，因为我个人是用的WeChat可以使用FCM进行推送。</p>
@@ -158,26 +138,23 @@
       </tags>
   </entry>
   <entry>
-    <title>关于适配Email OAuth2 登录情况</title>
-    <url>/2024/10/11/technology/email/Email_OAuth2/</url>
-    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>Microsoft &amp; Google 摒弃密码直接IMAP登录的方式。应用密码也无法登录。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1，<a href="https://javaee.github.io/javamail/OAuth2">https://javaee.github.io/javamail/OAuth2</a><br>2，<a href="https://learn.microsoft.com/zh-cn/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth">使用 OAuth 对 IMAP、POP 或 SMTP 连接进行身份验证 | Microsoft Learn</a><br>3，<a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a></p>
-<h2 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h2><h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><p>1，Spring boot 3.3.0<br>2，JDK 21<br>3，Spring cloud 2023.0.1</p>
-<h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><p>前提：完成对应平台应用的创建，以Microsoft为例<br><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/quickstart-create-new-tenant">快速入门：创建 Microsoft Entra 租户 - Microsoft identity platform | Microsoft Learn</a></p>
-<p>获取token：以Microsoft为例，</p>
-<p>1，请求授权代码。此处scope参数参考“参考资料第2点中权限部分”：</p>
-<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>2，使用 client_secret 请求访问令牌。</p>
-<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-access-token-with-a-client_secret">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>3，第二点成功后会有一个 “access_token” 的返回参数。此参数的值可用于后续登录。</p>
-<p>登录代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">SSL_FACTORY</span> <span class="operator">=</span> <span class="string">&quot;javax.net.ssl.SSLSocketFactory&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.host&quot;</span>, <span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.port&quot;</span>, <span class="string">&quot;7890&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;proxySet&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.ssl.enable&quot;</span>, <span class="string">&quot;true&quot;</span>); <span class="comment">// required for Gmail</span></span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socketFactory.class&quot;</span>, SSL_FACTORY);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.auth.mechanisms&quot;</span>, <span class="string">&quot;XOAUTH2&quot;</span>);</span><br><span class="line"><span class="type">Session</span> <span class="variable">emailSession</span> <span class="operator">=</span> Session.getInstance(properties);</span><br><span class="line"></span><br><span class="line">emailSession.setDebug(<span class="literal">true</span>);</span><br><span class="line"><span class="type">IMAPStore</span> <span class="variable">store</span> <span class="operator">=</span> (IMAPStore) emailSession.getStore(<span class="string">&quot;imap&quot;</span>);</span><br><span class="line">store.connect(<span class="string">&quot;imap.gmail.com&quot;</span> ,account, access_token);</span><br></pre></td></tr></table></figure>
-
-<p>其中核心配置是“properties.setProperty(“mail.imap.auth.mechanisms”, “XOAUTH2”);”，加入这个参数意味这你使用OAuth2的认证方式。只需要把原有的password替换为token，剩余部分javamail会帮你处理(见参考资料1)</p>
-]]></content>
+    <title>什达格</title>
+    <url>/2024/09/08/travel/ShenDaGe/</url>
+    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>布瓦寨后山——什达格，最高海拔3900左右，登上山巅，可以看到羌山之王——小雪隆包，九顶山朱峰狮子王峰</p>
+<h2 id="轨迹"><a href="#轨迹" class="headerlink" title="轨迹"></a>轨迹</h2><p><a href="https://www.2bulu.com/track/t-KzSeHBkpXBrp%25252FR2KBg5Tzw%25253D%25253D.htm">https://www.2bulu.com/track/t-KzSeHBkpXBrp%25252FR2KBg5Tzw%25253D%25253D.htm</a><br>难度系数：⭐⭐⭐⭐<br>路程：往返18km，爬升1200左右。最晚下午三点下山</p>
+<h2 id="消费"><a href="#消费" class="headerlink" title="消费"></a>消费</h2><p>1，单边油费(1元&#x2F;km) + 过路费 为 151 + 76<br>2，开心牧场门票 20&#x2F;人</p>
+<h2 id="行摄"><a href="#行摄" class="headerlink" title="行摄"></a>行摄</h2><div class="gallery-container" data-type="data" data-button="">
+      <div class="gallery-data">[{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBTcTh3ekJVdEVWRlVoWHc_ZT14dG1RUzU.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBSanVtX1p5SW1iZ08tX3c_ZT1paENDTFg.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBPWXpybFNXeUxXVDNMNHc_ZT1hY0NSUEE.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBOcWRuNFAtRFhBZm9BWHc_ZT01UXFTMHQ.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBQSjU4UUVZSkxfSzJSQUE_ZT1PazM4Wm8.jpg","alt":""},{"url":"https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL2kvcyFBanVsb1JUX2IyeXVndDBRZng1S0hFcUtiSDUxNGc_ZT1LYm1MaGk.jpg","alt":""}]</div>
+      <div class="gallery-items">
+      </div>
+    </div>]]></content>
       <categories>
-        <category>技术</category>
+        <category>旅游</category>
       </categories>
       <tags>
-        <tag>邮箱</tag>
+        <tag>旅游</tag>
+        <tag>四川</tag>
+        <tag>什达格</tag>
       </tags>
   </entry>
   <entry>
@@ -324,6 +301,29 @@
       <tags>
         <tag>美食</tag>
         <tag>汇总</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于适配Email OAuth2 登录情况</title>
+    <url>/2024/10/11/technology/email/Email_OAuth2/</url>
+    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>Microsoft &amp; Google 摒弃密码直接IMAP登录的方式。应用密码也无法登录。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1，<a href="https://javaee.github.io/javamail/OAuth2">https://javaee.github.io/javamail/OAuth2</a><br>2，<a href="https://learn.microsoft.com/zh-cn/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth">使用 OAuth 对 IMAP、POP 或 SMTP 连接进行身份验证 | Microsoft Learn</a><br>3，<a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a></p>
+<h2 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h2><h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><p>1，Spring boot 3.3.0<br>2，JDK 21<br>3，Spring cloud 2023.0.1</p>
+<h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><p>前提：完成对应平台应用的创建，以Microsoft为例<br><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/quickstart-create-new-tenant">快速入门：创建 Microsoft Entra 租户 - Microsoft identity platform | Microsoft Learn</a></p>
+<p>获取token：以Microsoft为例，</p>
+<p>1，请求授权代码。此处scope参数参考“参考资料第2点中权限部分”：</p>
+<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>2，使用 client_secret 请求访问令牌。</p>
+<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-access-token-with-a-client_secret">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>3，第二点成功后会有一个 “access_token” 的返回参数。此参数的值可用于后续登录。</p>
+<p>登录代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">SSL_FACTORY</span> <span class="operator">=</span> <span class="string">&quot;javax.net.ssl.SSLSocketFactory&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.host&quot;</span>, <span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.port&quot;</span>, <span class="string">&quot;7890&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;proxySet&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.ssl.enable&quot;</span>, <span class="string">&quot;true&quot;</span>); <span class="comment">// required for Gmail</span></span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socketFactory.class&quot;</span>, SSL_FACTORY);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.auth.mechanisms&quot;</span>, <span class="string">&quot;XOAUTH2&quot;</span>);</span><br><span class="line"><span class="type">Session</span> <span class="variable">emailSession</span> <span class="operator">=</span> Session.getInstance(properties);</span><br><span class="line"></span><br><span class="line">emailSession.setDebug(<span class="literal">true</span>);</span><br><span class="line"><span class="type">IMAPStore</span> <span class="variable">store</span> <span class="operator">=</span> (IMAPStore) emailSession.getStore(<span class="string">&quot;imap&quot;</span>);</span><br><span class="line">store.connect(<span class="string">&quot;imap.gmail.com&quot;</span> ,account, access_token);</span><br></pre></td></tr></table></figure>
+
+<p>其中核心配置是“properties.setProperty(“mail.imap.auth.mechanisms”, “XOAUTH2”);”，加入这个参数意味这你使用OAuth2的认证方式。只需要把原有的password替换为token，剩余部分javamail会帮你处理(见参考资料1)</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>邮箱</tag>
       </tags>
   </entry>
 </search>
