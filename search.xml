@@ -114,6 +114,29 @@
       </tags>
   </entry>
   <entry>
+    <title>三峡之颠</title>
+    <url>/2024/11/23/travel/TheTopOfTheThreeGorges/</url>
+    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>​		三峡之巅景区是位于重庆市奉节县城以东约10多千米的位置， [4]占地约2000亩。 [1]于2020年5月1日正式对外开放。</p>
+<h2 id="轨迹"><a href="#轨迹" class="headerlink" title="轨迹"></a>轨迹</h2><p>​		景区道路，无轨迹</p>
+<h2 id="行程"><a href="#行程" class="headerlink" title="行程"></a>行程</h2><p>去程</p>
+<p>方案一：</p>
+<p>DAY1：成都出发 -&gt; 重庆 </p>
+<p>DAY2：重庆 -&gt; 奉节 -&gt; 重庆</p>
+<p>DAY3：重庆 -&gt; 成都</p>
+<h2 id="具体规划"><a href="#具体规划" class="headerlink" title="具体规划"></a>具体规划</h2><p>1，周五晚上出发乘坐高铁至重庆。<br>2，周六 7:01-8:47 重庆北到奉节。<br>3，周六 9:40-10:40 奉节高铁站到拗口。<br>4，周六 10:40-15:40 拗口到三峡之颠。<br>5，周六 16:50-17:00 山顶观光车到三峡之巅景区门口。<br>6，周六 17:10-18:40 景区门口到奉节高铁站。<br>7，周六 19:40-21:27 奉节高铁站到重庆北。<br>8，周日 任意时间 重庆到成都。</p>
+<h2 id="水源"><a href="#水源" class="headerlink" title="水源"></a>水源</h2><p>不做备注</p>
+<h2 id="路餐"><a href="#路餐" class="headerlink" title="路餐"></a>路餐</h2><p>自备</p>
+]]></content>
+      <categories>
+        <category>旅行</category>
+      </categories>
+      <tags>
+        <tag>旅行</tag>
+        <tag>三峡之颠</tag>
+        <tag>重庆</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>长穿毕</title>
     <url>/2024/09/18/travel/Siguniang_CTB/</url>
     <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>中国十大经典徒步路线之一，四姑娘山最经典的徒步路线，行程从低海拔到高海拔地区，有足够的时间适应高原，既有挑战，又能顺利的完成</p>
@@ -143,26 +166,26 @@
       </tags>
   </entry>
   <entry>
-    <title>三峡之颠</title>
-    <url>/2024/11/23/travel/TheTopOfTheThreeGorges/</url>
-    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>​		三峡之巅景区是位于重庆市奉节县城以东约10多千米的位置， [4]占地约2000亩。 [1]于2020年5月1日正式对外开放。</p>
-<h2 id="轨迹"><a href="#轨迹" class="headerlink" title="轨迹"></a>轨迹</h2><p>​		景区道路，无轨迹</p>
-<h2 id="行程"><a href="#行程" class="headerlink" title="行程"></a>行程</h2><p>去程</p>
-<p>方案一：</p>
-<p>DAY1：成都出发 -&gt; 重庆 </p>
-<p>DAY2：重庆 -&gt; 奉节 -&gt; 重庆</p>
-<p>DAY3：重庆 -&gt; 成都</p>
-<h2 id="具体规划"><a href="#具体规划" class="headerlink" title="具体规划"></a>具体规划</h2><p>1，周五晚上出发乘坐高铁至重庆。<br>2，周六 7:01-8:47 重庆北到奉节。<br>3，周六 9:40-10:40 奉节高铁站到拗口。<br>4，周六 10:40-15:40 拗口到三峡之颠。<br>5，周六 16:50-17:00 山顶观光车到三峡之巅景区门口。<br>6，周六 17:10-18:40 景区门口到奉节高铁站。<br>7，周六 19:40-21:27 奉节高铁站到重庆北。<br>8，周日 任意时间 重庆到成都。</p>
-<h2 id="水源"><a href="#水源" class="headerlink" title="水源"></a>水源</h2><p>不做备注</p>
-<h2 id="路餐"><a href="#路餐" class="headerlink" title="路餐"></a>路餐</h2><p>自备</p>
+    <title>关于适配Email OAuth2 登录情况</title>
+    <url>/2024/10/11/technology/email/Email_OAuth2/</url>
+    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>Microsoft &amp; Google 摒弃密码直接IMAP登录的方式。应用密码也无法登录。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1，<a href="https://javaee.github.io/javamail/OAuth2">https://javaee.github.io/javamail/OAuth2</a><br>2，<a href="https://learn.microsoft.com/zh-cn/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth">使用 OAuth 对 IMAP、POP 或 SMTP 连接进行身份验证 | Microsoft Learn</a><br>3，<a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a></p>
+<h2 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h2><h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><p>1，Spring boot 3.3.0<br>2，JDK 21<br>3，Spring cloud 2023.0.1</p>
+<h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><p>前提：完成对应平台应用的创建，以Microsoft为例<br><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/quickstart-create-new-tenant">快速入门：创建 Microsoft Entra 租户 - Microsoft identity platform | Microsoft Learn</a></p>
+<p>获取token：以Microsoft为例，</p>
+<p>1，请求授权代码。此处scope参数参考“参考资料第2点中权限部分”：</p>
+<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>2，使用 client_secret 请求访问令牌。</p>
+<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-access-token-with-a-client_secret">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>3，第二点成功后会有一个 “access_token” 的返回参数。此参数的值可用于后续登录。</p>
+<p>登录代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">SSL_FACTORY</span> <span class="operator">=</span> <span class="string">&quot;javax.net.ssl.SSLSocketFactory&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.host&quot;</span>, <span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.port&quot;</span>, <span class="string">&quot;7890&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;proxySet&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.ssl.enable&quot;</span>, <span class="string">&quot;true&quot;</span>); <span class="comment">// required for Gmail</span></span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socketFactory.class&quot;</span>, SSL_FACTORY);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.auth.mechanisms&quot;</span>, <span class="string">&quot;XOAUTH2&quot;</span>);</span><br><span class="line"><span class="type">Session</span> <span class="variable">emailSession</span> <span class="operator">=</span> Session.getInstance(properties);</span><br><span class="line"></span><br><span class="line">emailSession.setDebug(<span class="literal">true</span>);</span><br><span class="line"><span class="type">IMAPStore</span> <span class="variable">store</span> <span class="operator">=</span> (IMAPStore) emailSession.getStore(<span class="string">&quot;imap&quot;</span>);</span><br><span class="line">store.connect(<span class="string">&quot;imap.gmail.com&quot;</span> ,account, access_token);</span><br></pre></td></tr></table></figure>
+
+<p>其中核心配置是“properties.setProperty(“mail.imap.auth.mechanisms”, “XOAUTH2”);”，加入这个参数意味这你使用OAuth2的认证方式。只需要把原有的password替换为token，剩余部分javamail会帮你处理(见参考资料1)</p>
 ]]></content>
       <categories>
-        <category>旅行</category>
+        <category>技术</category>
       </categories>
       <tags>
-        <tag>旅行</tag>
-        <tag>三峡之颠</tag>
-        <tag>重庆</tag>
+        <tag>邮箱</tag>
       </tags>
   </entry>
   <entry>
@@ -521,29 +544,6 @@
       <tags>
         <tag>美食</tag>
         <tag>汇总</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于适配Email OAuth2 登录情况</title>
-    <url>/2024/10/11/technology/email/Email_OAuth2/</url>
-    <content><![CDATA[<h2 id="基本概况"><a href="#基本概况" class="headerlink" title="基本概况"></a>基本概况</h2><p>Microsoft &amp; Google 摒弃密码直接IMAP登录的方式。应用密码也无法登录。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1，<a href="https://javaee.github.io/javamail/OAuth2">https://javaee.github.io/javamail/OAuth2</a><br>2，<a href="https://learn.microsoft.com/zh-cn/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth">使用 OAuth 对 IMAP、POP 或 SMTP 连接进行身份验证 | Microsoft Learn</a><br>3，<a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a></p>
-<h2 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h2><h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><p>1，Spring boot 3.3.0<br>2，JDK 21<br>3，Spring cloud 2023.0.1</p>
-<h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><p>前提：完成对应平台应用的创建，以Microsoft为例<br><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/quickstart-create-new-tenant">快速入门：创建 Microsoft Entra 租户 - Microsoft identity platform | Microsoft Learn</a></p>
-<p>获取token：以Microsoft为例，</p>
-<p>1，请求授权代码。此处scope参数参考“参考资料第2点中权限部分”：</p>
-<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>2，使用 client_secret 请求访问令牌。</p>
-<p><a href="https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-access-token-with-a-client_secret">微软身份平台和 OAuth 2.0 授权代码流 - Microsoft identity platform | Microsoft Learn</a><br>3，第二点成功后会有一个 “access_token” 的返回参数。此参数的值可用于后续登录。</p>
-<p>登录代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">SSL_FACTORY</span> <span class="operator">=</span> <span class="string">&quot;javax.net.ssl.SSLSocketFactory&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.host&quot;</span>, <span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socks.port&quot;</span>, <span class="string">&quot;7890&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;proxySet&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.ssl.enable&quot;</span>, <span class="string">&quot;true&quot;</span>); <span class="comment">// required for Gmail</span></span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.socketFactory.class&quot;</span>, SSL_FACTORY);</span><br><span class="line">properties.setProperty(<span class="string">&quot;mail.imap.auth.mechanisms&quot;</span>, <span class="string">&quot;XOAUTH2&quot;</span>);</span><br><span class="line"><span class="type">Session</span> <span class="variable">emailSession</span> <span class="operator">=</span> Session.getInstance(properties);</span><br><span class="line"></span><br><span class="line">emailSession.setDebug(<span class="literal">true</span>);</span><br><span class="line"><span class="type">IMAPStore</span> <span class="variable">store</span> <span class="operator">=</span> (IMAPStore) emailSession.getStore(<span class="string">&quot;imap&quot;</span>);</span><br><span class="line">store.connect(<span class="string">&quot;imap.gmail.com&quot;</span> ,account, access_token);</span><br></pre></td></tr></table></figure>
-
-<p>其中核心配置是“properties.setProperty(“mail.imap.auth.mechanisms”, “XOAUTH2”);”，加入这个参数意味这你使用OAuth2的认证方式。只需要把原有的password替换为token，剩余部分javamail会帮你处理(见参考资料1)</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>邮箱</tag>
       </tags>
   </entry>
   <entry>
